@@ -1,0 +1,36 @@
+{
+  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "rulesDirectory": ["./node_modules/tslint-react/rules"],
+  "rules": {
+    "interface-name": [true, "never-prefix"],
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false,
+    "jsx-use-translation-function": false,
+    "object-literal-sort-keys": false,
+    "member-ordering": [
+      true,
+      "public-before-private",
+      "static-before-instance",
+      "variables-before-functions",
+      "statics-first"
+    ],
+    "no-any": true,
+    "no-console": false,
+    "no-duplicate-variable": true,
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false,
+    "no-switch-case-fall-through": true,
+    "ordered-imports": false,
+    "switch-default": true,
+    "typedef": [true, "parameter", "property-declaration"],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-pascal-case"
+    ],
+    "max-classes-per-file": 4,
+    "no-any": false
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": ["es2017"],
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./lib",
+    "declaration": true,
+    "declarationDir": "./",
+    "rootDir": "src",
+    "sourceMap": false,
+    "allowJs": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "preserveConstEnums": false,
+    "removeComments": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
