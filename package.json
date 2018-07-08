@@ -1,5 +1,5 @@
 {
-  "name": "react-firestore-mobx",
+  "name": "react-firestore-mobx-bindings",
   "version": "0.0.1",
   "description": "Simple bindings to efficiently inject firestore into observable react components using MobX Management Hooks with unidirectional data flow",
   "repository": {

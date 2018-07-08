@@ -1,4 +1,4 @@
-# react-firestore-mobx
+# react-firestore-mobx-bindings
 
 [![Typescript Version](https://img.shields.io/badge/Typescript-2.8-2f69f4.svg?style=flat)](https://www.typescriptlang.org/)
 [![MobX Version](https://img.shields.io/badge/MobX-4.2-2f69f4.svg?style=flat)](https://github.com/mobxjs/mobx)
@@ -22,14 +22,14 @@ Firestore is a great service to allow _all_ of your app data to exist non-locall
 Install with
 
 ```
-yarn add react-firestore-mobx
+yarn add react-firestore-mobx-bindings
 ```
 
 Then, provide the firestore factory to the React Context using `MobxProvider` from `mobx-react`:
 
 ```
 import { Provider as MobxProvider } from 'mobx-react';
-import { FirestoreObservableFactory } from 'react-firestore-mobx';
+import { FirestoreObservableFactory } from 'react-firestore-mobx-bindings';
 
 const factory = new FirestoreObservableFactory('my factory');
 
@@ -46,7 +46,7 @@ export const Root: React.StatelessComponent<> = () => {
 
 ## Usage
 
-`react-firestore-mobx` provides a HOC method, or a query component, depending on your preference.
+`react-firestore-mobx-bindings` provides a HOC method, or a query component, depending on your preference.
 
 ### Using `injectFirestore` as a HOC:
 
