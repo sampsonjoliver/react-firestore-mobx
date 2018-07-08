@@ -2,8 +2,8 @@ import { onBecomeObserved, onBecomeUnobserved } from 'mobx';
 import { observable, decorate } from 'mobx';
 
 export class AutoObservable<T> {
-  protected _data: T | null;
-  protected _isLoading: boolean;
+  public _data: T | null;
+  public _isLoading: boolean;
 
   get data() {
     return this._data;

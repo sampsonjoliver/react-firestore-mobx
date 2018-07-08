@@ -1,6 +1,7 @@
 # react-firestore-mobx
 
-[![Typescript Version](https://img.shields.io/badge/Typescript-2.8-2f69f4.svg?style=flat)](https://www.npmjs.com/package/next)
+[![Typescript Version](https://img.shields.io/badge/Typescript-2.8-2f69f4.svg?style=flat)](https://www.typescriptlang.org/)
+[![MobX Version](https://img.shields.io/badge/MobX-4.2-2f69f4.svg?style=flat)](https://github.com/mobxjs/mobx)
 [![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://prettier.io/)
 [![Version](https://img.shields.io/badge/Version-0.0.1-ff6964.svg?style=flat)](https://github.com/sampsonjoliver/react-firestore-mobx)
 
@@ -16,26 +17,38 @@ Because the less you have to manage your data, while still having full control o
 
 Firestore is a great service to allow _all_ of your app data to exist non-locally while still appearing performant and seamless. The motivation of this library is to reduce the barrier to binding that app data into your react components, while still providing the power and control of using mobx in the data layer.
 
-## Usage
+## Setup
 
-First, provide the firestore factory to the React Context via the `mobx-react` package's `MobxProvider` component:
+Install with
+
+```
+yarn add react-firestore-mobx
+```
+
+Then, provide the firestore factory to the React Context using `MobxProvider` from `mobx-react`:
 
 ```
 import { Provider as MobxProvider } from 'mobx-react';
-import { SovereignFactory } from 'util/sovereignFactory';
+import { FirestoreObservableFactory } from 'react-firestore-mobx';
 
-const sovereignFactory = new SovereignFactory('sovereignStore');
+const factory = new FirestoreObservableFactory('my factory');
 
 export const Root: React.StatelessComponent<> = () => {
   return (
-    <MobxProvider sovereignFactory={sovereignFactory}>
+    <MobxProvider AutoObservableFactory={factoryy}>
         ...
     </MobxProvider>
   );
 };
 ```
 
-Then, use either the `injectFirestore` HOC:
+> **NOTE**: You _must_ provide the factory to the MobxProvider as `AutoObservableFactory` in order for it to be located by the HOX and query component.
+
+## Usage
+
+`react-firestore-mobx` provides a HOC method, or a query component, depending on your preference.
+
+### Using `injectFirestore` as a HOC:
 
 ```
 const injectedByHoc = injectFirestore(
@@ -54,7 +67,7 @@ const injectedByHoc = injectFirestore(
 );
 ```
 
-Or the `FirestoreQueryComponent` component:
+### Using `FirestoreQueryComponent` query component:
 
 ```
 const queryComponent = () => {

@@ -1,5 +1,5 @@
-import { FirestoreAutoObservable } from './FirestoreAutoObservable';
 import firestore from 'firebase/firestore';
+import { FirestoreAutoObservable } from './FirestoreAutoObservable';
 
 export class FirestoreObservableFactory {
   private _name: string = 'StoreFactory';

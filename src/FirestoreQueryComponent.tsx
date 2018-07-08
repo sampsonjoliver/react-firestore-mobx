@@ -18,10 +18,10 @@ export interface FirestoreQueryProps<TInput> {
   children: (
     result: FirestoreInjected<TInput>
   ) => IReactComponent | React.ReactElement<any>;
-  sovereignStore?: FirestoreObservableFactory;
+  AutoObservableFactory?: FirestoreObservableFactory;
 }
 
-export const FirestoreQueryComponent = inject('sovereignFactory')(
+export const FirestoreQueryComponent = inject('AutoObservableFactory')(
   class FirestoreQuery<TProps> extends React.Component<
     FirestoreQueryProps<TProps>
   > {
@@ -39,7 +39,7 @@ export const FirestoreQueryComponent = inject('sovereignFactory')(
       const sovereigns = Object.assign(
         {},
         ...Object.entries(fsRefs).map(([key, value]) => ({
-          [key]: this.props.sovereignStore!.getOrCreateStore(
+          [key]: this.props.AutoObservableFactory!.getOrCreateStore(
             key,
             value as FirestoreRef
           )
@@ -53,7 +53,7 @@ export const FirestoreQueryComponent = inject('sovereignFactory')(
               {this.props.children({
                 ...sovereigns,
                 firestore,
-                sovereignFactory: this.props.sovereignStore
+                sovereignFactory: this.props.AutoObservableFactory
               })}
             </div>
           )}

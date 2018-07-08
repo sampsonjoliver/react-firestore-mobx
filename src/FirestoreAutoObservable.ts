@@ -5,14 +5,14 @@ type Flatten<T> = T extends any[] ? T[number] : T;
 
 export class FirestoreAutoObservable<
   T extends any | any[]
-> extends AutoObservable<T> {
+  > extends AutoObservable<T> {
   private unsubscriber?: () => void;
   private fsRef: firestore.Query | firestore.DocumentReference;
 
   constructor(fsRef: firestore.Query | firestore.DocumentReference) {
     super(
       () => {
-        console.log('Opening FS Sovereign');
+        console.log('Opening FS AutoObservable');
         this._isLoading = true;
         this.unsubscriber = (this.fsRef as firestore.Query).onSnapshot(
           snapshot => {
@@ -22,7 +22,7 @@ export class FirestoreAutoObservable<
         );
       },
       () => {
-        console.log('Closing FS Sovereign');
+        console.log('Closing FS AutoObservable');
         if (this.unsubscriber) {
           this.unsubscriber();
         }

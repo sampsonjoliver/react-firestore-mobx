@@ -16,21 +16,25 @@ export const injectFirestore: <T>(
   },
   target: IReactComponent
 ) => {
-  const InjectedComponent: IReactComponent = inject('sovereignFactory')(
-    ({ sovereignStore }: { sovereignStore: FirestoreObservableFactory }) => {
+  const InjectedComponent: IReactComponent = inject('AutoObservableFactory')(
+    ({
+      autoObservableFactory
+    }: {
+      autoObservableFactory: FirestoreObservableFactory;
+    }) => {
       const db = firestore();
-      const fsRefs = fsMap(firestore());
+      const fsRefs = fsMap(db);
 
-      const sovereigns = Object.assign(
+      const autoObservables = Object.assign(
         {},
         ...Object.entries(fsRefs).map(([key, value]) => ({
-          [key]: sovereignStore.getOrCreateStore(key, value)
+          [key]: autoObservableFactory.getOrCreateStore(key, value)
         }))
       );
 
       const ObserverComponent = observer(target);
 
-      return <ObserverComponent {...sovereigns} />;
+      return <ObserverComponent {...autoObservables} />;
     }
   );
 

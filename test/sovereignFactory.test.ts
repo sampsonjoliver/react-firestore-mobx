@@ -1,28 +1,33 @@
-import { SovereignFactory } from '../src/SovereignFactory';
-import { autorun, reaction } from 'mobx';
+import { autorun } from 'mobx';
 import { firestore } from 'firebase';
-import { FirestoreSovereign } from '../src/FirestoreSovereign';
+import { FirestoreObservableFactory } from '../src/FirestoreObservableFactory';
+import { FirestoreAutoObservable } from '../src/FirestoreAutoObservable';
 
-let factory: SovereignFactory;
+let factory: FirestoreObservableFactory;
 describe('sovereign-factory', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    factory = new SovereignFactory('');
+    factory = new FirestoreObservableFactory('');
   });
 
   it('Creates new sovereign when not exists', () => {
     const mockFirestoreQuery: any = { onSnapshot: jest.fn() };
     factory.getOrCreateStore('key', mockFirestoreQuery);
 
-    expect(factory.getOrCreateStore('key')).toBeInstanceOf(FirestoreSovereign);
+    expect(factory.getOrCreateStore('key')).toBeInstanceOf(
+      FirestoreAutoObservable
+    );
     expect(factory.getOrCreateStore('otherkey')).toBeUndefined();
   });
 
   it('Does become observed from observer access', () => {
     const mockFirestoreQuery: any = { onSnapshot: jest.fn() };
-    const fsSovereign = factory.getOrCreateStore('key', mockFirestoreQuery);
+    const fsAutoObservable = factory.getOrCreateStore(
+      'key',
+      mockFirestoreQuery
+    );
     autorun(() => {
-      const x = fsSovereign.data;
+      const x = fsAutoObservable.data;
     });
     expect(mockFirestoreQuery.onSnapshot.mock.calls.length).toBe(1);
   });
@@ -31,15 +36,15 @@ describe('sovereign-factory', () => {
     const fsClose = jest.fn();
     const mockFirestoreQuery: any = { onSnapshot: jest.fn() };
     mockFirestoreQuery.onSnapshot.mockImplementation(() => fsClose);
-    const fsSovereign = factory.getOrCreateStore(
+    const fsAutoObservable = factory.getOrCreateStore(
       'key',
       mockFirestoreQuery as firestore.Query
     );
 
-    console.log('fsSovereign', fsSovereign);
+    console.log('fsSovereign', fsAutoObservable);
 
     const close = autorun(() => {
-      const x = fsSovereign.data;
+      const x = fsAutoObservable.data;
     });
     close();
 

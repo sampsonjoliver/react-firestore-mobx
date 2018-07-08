@@ -1,5 +1,5 @@
 import { AutoObservable } from '../src/AutoObservable';
-import { autorun, reaction } from 'mobx';
+import { autorun } from 'mobx';
 
 const mockSocket = {
   open: jest.fn(),
