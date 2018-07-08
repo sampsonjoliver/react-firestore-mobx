@@ -1,15 +1,33 @@
 {
   "name": "react-firestore-mobx",
   "version": "0.0.1",
-  "description":
-    "Simple bindings to efficiently inject firestore into observable react components using MobX Management Hooks with unidirectional data flow",
-  "main": "index.js",
-  "repository": "https://github.com/sampsonjoliver/react-firestore-mobx.git",
+  "description": "Simple bindings to efficiently inject firestore into observable react components using MobX Management Hooks with unidirectional data flow",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sampsonjoliver/react-firestore-mobx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sampsonjoliver/react-firestore-mobx/issues"
+  },
   "author": "sampsonjoliver <sampsonjoliver@outlook.com>",
   "license": "MIT",
   "private": false,
+  "keywords": [
+    "mobx",
+    "firebase",
+    "firestore",
+    "react"
+  ],
+  "main": "lib/index.js",
+  "files": [
+    "lib/",
+    "index.d.ts",
+    "mobxAtomStore.d.ts"
+  ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "yarn tsc",
+    "publish": "yarn build && npm publish"
   },
   "dependencies": {
     "firebase": "^4.13.1",
@@ -30,6 +48,13 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }
