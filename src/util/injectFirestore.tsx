@@ -1,5 +1,5 @@
 import * as React from 'react';
-import firestore from 'firebase/firestore';
+import { firestore } from 'firebase';
 import { inject, observer, IReactComponent } from 'mobx-react';
 import { FirestoreObservableFactory } from '../FirestoreObservableFactory';
 

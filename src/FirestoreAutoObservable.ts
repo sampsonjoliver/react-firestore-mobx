@@ -1,11 +1,11 @@
 import { AutoObservable } from './AutoObservable';
-import firestore from 'firebase/firestore';
+import { firestore } from 'firebase';
 
 type Flatten<T> = T extends any[] ? T[number] : T;
 
 export class FirestoreAutoObservable<
   T extends any | any[]
-  > extends AutoObservable<T> {
+> extends AutoObservable<T> {
   private unsubscriber?: () => void;
   private fsRef: firestore.Query | firestore.DocumentReference;
 

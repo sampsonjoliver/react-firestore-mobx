@@ -1,6 +1,6 @@
 {
   "name": "react-firestore-mobx-bindings",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Simple bindings to efficiently inject firestore into observable react components using MobX Management Hooks with unidirectional data flow",
   "repository": {
     "type": "git",

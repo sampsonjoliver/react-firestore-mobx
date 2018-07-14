@@ -1,4 +1,4 @@
-import firestore from 'firebase/firestore';
+import { firestore } from 'firebase';
 import { FirestoreAutoObservable } from './FirestoreAutoObservable';
 
 export class FirestoreObservableFactory {
