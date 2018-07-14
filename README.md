@@ -1,9 +1,8 @@
 # react-firestore-mobx-bindings
 
 [![Typescript Version](https://img.shields.io/badge/Typescript-2.8-2f69f4.svg?style=flat)](https://www.typescriptlang.org/)
-[![MobX Version](https://img.shields.io/badge/MobX-4.2-2f69f4.svg?style=flat)](https://github.com/mobxjs/mobx)
 [![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://prettier.io/)
-[![Version](https://img.shields.io/badge/Version-0.0.1-ff6964.svg?style=flat)](https://github.com/sampsonjoliver/react-firestore-mobx)
+[![Version](https://img.shields.io/badge/Version-0.0.5-ff6964.svg?style=flat)](https://github.com/sampsonjoliver/react-firestore-mobx)
 
 A lightweight library to bind firestore data into react components statefully via mobx.
 
