@@ -1,5 +1,5 @@
 import { AutoObservable } from '../src/AutoObservable';
-import { autorun } from 'mobx';
+import { autorun, $mobx } from 'mobx';
 
 const mockSocket = {
   open: jest.fn(),
@@ -40,7 +40,7 @@ describe('AutoObservable', () => {
     });
     close();
     expect(mockSocket.open.mock.calls.length).toBe(1);
-    expect(close.$mobx.isDisposed).toBeTruthy();
+    expect(close[$mobx].isDisposed).toBeTruthy();
   });
 
   it('Triggers observer on data changed', () => {

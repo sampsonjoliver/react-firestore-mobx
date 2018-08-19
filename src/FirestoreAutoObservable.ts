@@ -15,10 +15,7 @@ export class FirestoreAutoObservable<
         console.log('Opening FS AutoObservable');
         this._isLoading = true;
         this.unsubscriber = (this.fsRef as firestore.Query).onSnapshot(
-          snapshot => {
-            this._data = this.getDataFromSnapshot(snapshot);
-            this._isLoading = false;
-          }
+          this.setSnapshot
         );
       },
       () => {
@@ -33,15 +30,34 @@ export class FirestoreAutoObservable<
     this.fsRef = fsRef;
   }
 
+  public setSnapshot(
+    snapshot: firestore.QuerySnapshot | firestore.DocumentSnapshot
+  ) {
+    this._data = this.getDataFromSnapshot(snapshot);
+    this._isLoading = false;
+  }
+
   private getDataFromSnapshot(
     snapshot: firestore.QuerySnapshot | firestore.DocumentSnapshot
   ): T {
     if ((snapshot as firestore.QuerySnapshot).docs) {
-      return (snapshot as firestore.QuerySnapshot).docs.map(doc =>
-        doc.data()
+      const dataArray = (snapshot as firestore.QuerySnapshot).docs.map(doc =>
+        mapDocToPayload(doc)
       ) as Flatten<T>;
+      return dataArray;
     } else {
-      return (snapshot as firestore.DocumentSnapshot).data() as T;
+      const data = mapDocToPayload(snapshot as firestore.DocumentSnapshot);
+      return data as Flatten<T>;
     }
   }
+}
+
+export function mapDocToPayload(doc: firestore.DocumentSnapshot) {
+  return {
+    ...doc.data(),
+    requestContext: {
+      ...doc,
+      data: undefined
+    }
+  };
 }

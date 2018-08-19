@@ -1,10 +1,10 @@
-import { autorun } from 'mobx';
+import { autorun, $mobx } from 'mobx';
 import { firestore } from 'firebase';
 import { FirestoreObservableFactory } from '../src/FirestoreObservableFactory';
 import { FirestoreAutoObservable } from '../src/FirestoreAutoObservable';
 
 let factory: FirestoreObservableFactory;
-describe('sovereign-factory', () => {
+describe('Sovereign Factory', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     factory = new FirestoreObservableFactory('');
@@ -49,7 +49,7 @@ describe('sovereign-factory', () => {
     close();
 
     expect(mockFirestoreQuery.onSnapshot.mock.calls.length).toBe(1);
-    expect(close.$mobx.isDisposed).toBeTruthy();
+    expect(close[$mobx].isDisposed).toBeTruthy();
 
     expect(fsClose.mock.calls.length).toBe(1);
   });
