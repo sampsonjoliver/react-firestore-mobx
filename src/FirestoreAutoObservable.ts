@@ -15,7 +15,7 @@ export class FirestoreAutoObservable<
         console.log('Opening FS AutoObservable');
         this._isLoading = true;
         this.unsubscriber = (this.fsRef as firestore.Query).onSnapshot(
-          this.setSnapshot
+          this.setSnapshot.bind(this)
         );
       },
       () => {
